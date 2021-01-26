@@ -2,7 +2,6 @@
 <html>
 
 <head>
-
   <!-- External Stylesheets -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
   <!-- Add the Leaflet JavaScript library -->
@@ -12,25 +11,30 @@
 
 <body>
   <!-- Our web map and content will go here -->
-  <div id="map" style="width: 900px; height: 600px"></div>
+  <div id="mapid" style="width: 900px; height: 600px"></div>
   <script>
     // Create variable to hold map element, give initial settings to map
-    var map = L.map('map', {
+    var map = L.map('mapid', {
       center: [44.56576, -123.27888],
       zoom: 16
     });
     // Add OpenStreetMap tile layer to map element
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      attribution: 'Map Maker: Bo Zhao| &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
+
     var Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
       maxZoom: 20,
       attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-    });
-    // Create point feature for Wilkinson Hall
+    }).addTo(map);
+
+    var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+    }).addTo(map);
+
     var myDataPoint = L.marker([44.56822, -123.28034]).addTo(map);
     // Create line feature for the Route from Wilkinson Hall to Strand Ag Hall, style and add to map
-    var myDataLine = L.polyline([]
+    var myDataLine = L.polyline([
       [44.5656915, -123.2775289],
       [44.5656992, -123.2778923],
       [44.5662266, -123.2778722],
@@ -48,7 +52,7 @@
       [44.5651985, -123.2775182],
       [44.5651985, -123.2769978],
     ], {
-      color: 'orange',
+      color: 'purple',
       weight: 5
     }).addTo(map);
   </script>
